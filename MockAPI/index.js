@@ -77,15 +77,15 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         function Edit(taskId, tr){
-            const nameCell= document.querySelector(".new-name");
-            const cityCell= document.querySelector('.new-city');
-            const ageCell= document.querySelector('.new-age');
+            const nameCell= tr.querySelector(".new-name");
+            const cityCell= tr.querySelector('.new-city');
+            const ageCell= tr.querySelector('.new-age');
 
             const nameInput=editCell(nameCell);
             const cityInput= editCell(cityCell);
             const ageInput=editCell(ageCell);
 
-            const editBtn= document.querySelector('.edit');
+            const editBtn= tr.querySelector('.edit');
             editBtn.textContent="Save";
 
             function saveClick(){
