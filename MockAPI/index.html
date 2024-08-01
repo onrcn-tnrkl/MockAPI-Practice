@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="todo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <script src="index.js"></script>
     <title>MockAPI Practice</title>
 </head>
 <body>
     <div class="container">
         <div class="input-div">
-            <textarea id="name" placeholder="Title"></textarea>
-            <textarea id="city" placeholder="City"></textarea>
-            <input type="number" id="age" placeholder="AGE">
-            <button id="create-btn">Create To Do</button>
+            <input type="text" id="name" placeholder="NAME">
+            <input type="text" id="city" placeholder="CITY">
+            <input type="number" min="0" id="age" placeholder="AGE">
+            <button id="create-btn">Add</button>
         </div>
         <div class="list">
             <table id="tbl">
@@ -29,7 +32,12 @@
 
                 </tbody>
             </table>
+            <div class="pagination">
+                <button id="back">Back</button>
+                <button id="next">Next</button>
+            </div>
         </div>
+        
     </div>
 </body>
 </html>
