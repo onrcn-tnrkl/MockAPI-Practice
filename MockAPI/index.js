@@ -180,11 +180,52 @@ document.addEventListener("DOMContentLoaded", function() {
         cityTextBox.value = "";
         ageTextBox.value = "";
     }
+    function pagination(){
+        let page= 1;
+        const backBtn= document.getElementById('back');
+        const nextBtn= document.getElementById('next');
+        
+        function updateButtons(){
+            if (page===1){
+                backBtn.style.display="none";
+            }
+            else{
+                backBtn.style.display="flex";
+            }
+        }
+        updateButtons()
 
-    function loadTasksFromAPI() {
-        fetch(`https://66a7891653c13f22a3d01a89.mockapi.io/tasks`)
+        nextBtn.addEventListener('click', () => {
+            page += 1;
+            loadTasksFromAPI(page);
+            updateButtons();
+        });
+
+        backBtn.addEventListener('click', () => {
+            if (page > 1) {
+                page -= 1;
+                loadTasksFromAPI(page);
+                updateButtons();
+            }
+        });
+
+
+        return page;
+    }
+    
+    function loadTasksFromAPI(page) {
+        const url= new URL(`https://66a7891653c13f22a3d01a89.mockapi.io/tasks`)
+        url.searchParams.append('page',page);
+        url.searchParams.append('limit',10);
+        fetch(url ,{
+            method:'GET',
+            headers:{'content-type':'application/json'},
+        })
         .then(res => res.json())
         .then(tasks => {
+
+            const taskContainer= document.getElementById('tasklist');
+            taskContainer.innerHTML="";
             tasks.forEach(task => {
                 taskNerde(task);
             });
@@ -194,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    loadTasksFromAPI();
+    loadTasksFromAPI(pagination());
 
     function saveTasksToLocalStorage() {
         const tasks = Array.from(document.querySelectorAll(".new-name")).map(
