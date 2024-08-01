@@ -123,8 +123,10 @@ body{
     background-color: rgb(19, 72, 125);
     color:white;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 .pagination{
+    display: flex;
     margin-bottom:30px;
 }
